@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from './context/UserContext'
 
-const Child3 = ({ user }) => {
+const Child3 = () => {
+    const data = useContext(UserContext)
+
     return (
         <>
-            <h1>Name:{user.name}</h1>
-            <h1>Username:{user.username}</h1>
-            <h1>Email:{user.email}</h1>
+            <h1>{data.company}</h1>
         </>
     )
 }

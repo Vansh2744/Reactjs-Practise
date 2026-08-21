@@ -1,15 +1,14 @@
 import './App.css'
 import Child1 from './Child1'
+import Child2 from './Child2';
+import Child3 from './Child3';
 
 function App() {
-  const user = {
-    name: "Vansh",
-    email: "vansh@gmail.com",
-    username: "vansh2744"
-  }
   return (
     <>
-      <Child1 user={user} />
+      <Child1 />
+      <Child2 />
+      <Child3 />
     </>
   )
 }
