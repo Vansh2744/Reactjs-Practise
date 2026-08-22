@@ -1,7 +1,9 @@
 import { createContext } from "react";
 
-export const UserContext = createContext({
-    name: "",
-    role: "",
-    company: ""
-})
+interface UserType {
+  name: string;
+  role: string;
+  company: string;
+}
+
+export const UserContext = createContext<UserType | undefined>(undefined);
