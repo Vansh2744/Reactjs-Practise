@@ -6,7 +6,7 @@ const Child2 = () => {
     const data = useContext(UserContext)
     return (
         <>
-            <h1>{data.role}</h1>
+            <h1>{data?.role}</h1>
         </>
     )
 }

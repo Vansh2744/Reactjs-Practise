@@ -1,16 +1,26 @@
-import './App.css'
-import Child1 from './Child1'
-import Child2 from './Child2';
-import Child3 from './Child3';
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "./redux/store";
+import {
+  decrement,
+  increment,
+  incrementByAmount,
+} from "./features/counter/counterSlice";
 
 function App() {
+  const count = useSelector((state: RootState) => state.counter.value);
+  const dispatch = useDispatch();
   return (
     <>
-      <Child1 />
-      <Child2 />
-      <Child3 />
+      <div className="flex items-center justify-center flex-col h-screen">
+        <h3>{count}</h3>
+        <button onClick={() => dispatch(increment())}>Increment</button>
+        <button onClick={() => dispatch(decrement())}>Decrement</button>
+        <button onClick={() => dispatch(incrementByAmount(10))}>
+          IncrementbyAmount
+        </button>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
