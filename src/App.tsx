@@ -5,6 +5,8 @@ import {
   increment,
   incrementByAmount,
 } from "./features/counter/counterSlice";
+import CurrentUser from "./CurrentUser";
+import UserForm from "./UserForm";
 
 function App() {
   const count = useSelector((state: RootState) => state.counter.value);
@@ -18,6 +20,10 @@ function App() {
         <button onClick={() => dispatch(incrementByAmount(10))}>
           IncrementbyAmount
         </button>
+      </div>
+      <div>
+        <CurrentUser />
+        <UserForm />
       </div>
     </>
   );
