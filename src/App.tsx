@@ -1,17 +1,27 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Counting from "./components/Counting";
+import Header from "./components/Header";
 
 function App() {
   const [count, setCount] = useState(0);
-  const value = useRef(0);
-  const color = useRef<HTMLDivElement | null>(null);
+  // const [value, setValue] = useState(0);
+  // const value = useRef(0);
+  // const color = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    value.current = value.current + 1;
-  });
+  // useEffect(() => {
+  //   value.current = value.current + 1;
+  // });
+
+  // const calculateCube = (num: number) => {
+  //   console.log("Cube Calculated");
+
+  //   return num ** 3;
+  // };
+
+  // const result = useMemo(() => calculateCube(value), [value]);
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <div>
+      {/* <div>
         <button onClick={() => setCount((prev) => prev + 1)}>+</button>
         <p>{count}</p>
         <button onClick={() => setCount((prev) => prev - 1)}>-</button>
@@ -27,7 +37,26 @@ function App() {
         }}
       >
         Change Color
-      </button>
+      </button> */}
+
+      {/* <div>
+        <input
+          type="number"
+          placeholder="Enter Number"
+          onChange={(e) => setValue(Number(e.target.value))}
+        />
+        <h1>Cube: {result}</h1>
+      </div>
+      <div>
+        <h2>{count}</h2>
+        <button onClick={() => setCount((prev) => prev + 1)}>Increment</button>
+      </div> */}
+
+      <div>
+        <Header />
+        <h2>{count}</h2>
+        <button onClick={() => setCount((prev) => prev + 1)}>Increment</button>
+      </div>
     </div>
   );
 }
