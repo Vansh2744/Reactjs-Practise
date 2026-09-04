@@ -1,4 +1,10 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import Counting from "./components/Counting";
 import Header from "./components/Header";
 
@@ -19,6 +25,9 @@ function App() {
   // };
 
   // const result = useMemo(() => calculateCube(value), [value]);
+
+  const calculateFact = useCallback(() => {}, []);
+
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       {/* <div>
@@ -53,7 +62,7 @@ function App() {
       </div> */}
 
       <div>
-        <Header />
+        <Header fact={calculateFact} />
         <h2>{count}</h2>
         <button onClick={() => setCount((prev) => prev + 1)}>Increment</button>
       </div>

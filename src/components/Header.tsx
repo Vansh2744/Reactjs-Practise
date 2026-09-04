@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 
-const Header = () => {
+const Header = ({ fact }) => {
   console.log("Header Rendered");
 
   return <div>Header</div>;
