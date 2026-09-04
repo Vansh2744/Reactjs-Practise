@@ -1,31 +1,24 @@
-import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "./redux/store";
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-} from "./features/counter/counterSlice";
-import CurrentUser from "./CurrentUser";
-import UserForm from "./UserForm";
+import React, { useEffect, useRef, useState } from "react";
+import Counting from "./components/Counting";
 
 function App() {
-  const count = useSelector((state: RootState) => state.counter.value);
-  const dispatch = useDispatch();
+  const [count, setCount] = useState(0);
+  const value = useRef(0);
+
+  useEffect(() => {
+    value.current += 1;
+  });
   return (
-    <>
-      <div className="flex items-center justify-center flex-col h-screen">
-        <h3>{count}</h3>
-        <button onClick={() => dispatch(increment())}>Increment</button>
-        <button onClick={() => dispatch(decrement())}>Decrement</button>
-        <button onClick={() => dispatch(incrementByAmount(10))}>
-          IncrementbyAmount
-        </button>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <div>
+        <button onClick={() => setCount((prev) => prev + 1)}>+</button>
+        <p>{count}</p>
+        <button onClick={() => setCount((prev) => prev - 1)}>-</button>
       </div>
       <div>
-        <CurrentUser />
-        <UserForm />
+        <h1>{value.current}</h1>
       </div>
-    </>
+    </div>
   );
 }
 
