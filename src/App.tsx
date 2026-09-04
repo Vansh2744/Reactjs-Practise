@@ -7,6 +7,8 @@ import React, {
 } from "react";
 import Counting from "./components/Counting";
 import Header from "./components/Header";
+import ReducerApp from "./components/ReducerApp";
+import { useUsername } from "./components/CustomHook";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -26,7 +28,9 @@ function App() {
 
   // const result = useMemo(() => calculateCube(value), [value]);
 
-  const calculateFact = useCallback(() => {}, []);
+  // const calculateFact = useCallback(() => {}, []);
+
+  const [username, setUsername] = useUsername("Vansh");
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
@@ -61,10 +65,18 @@ function App() {
         <button onClick={() => setCount((prev) => prev + 1)}>Increment</button>
       </div> */}
 
-      <div>
+      {/* <div>
         <Header fact={calculateFact} />
         <h2>{count}</h2>
         <button onClick={() => setCount((prev) => prev + 1)}>Increment</button>
+      </div> */}
+
+      {/* <div>
+        <ReducerApp />
+      </div> */}
+      <div>
+        <h1>{username}</h1>
+        <button onClick={() => setUsername("Aman")}>Change Name</button>
       </div>
     </div>
   );
