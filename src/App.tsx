@@ -1,4 +1,6 @@
 import React, {
+  lazy,
+  Suspense,
   useCallback,
   useEffect,
   useMemo,
@@ -9,6 +11,12 @@ import Counting from "./components/Counting";
 import Header from "./components/Header";
 import ReducerApp from "./components/ReducerApp";
 import { useUsername } from "./components/CustomHook";
+import Child1 from "./components/Child1";
+import Child2 from "./components/Child2";
+import ErrorBoundary from "./components/ErrorBoundary";
+// import Profile from "./components/Profile";
+
+const Profile = lazy(() => import("./components/Profile"));
 
 function App() {
   const [count, setCount] = useState(0);
@@ -30,10 +38,17 @@ function App() {
 
   // const calculateFact = useCallback(() => {}, []);
 
+  const [show, setShow] = useState(false);
+
   const [username, setUsername] = useUsername("Vansh");
 
+  const handleSubmit = () => {
+    const name = document.getElementById("name");
+    console.log(name?.value);
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div>
       {/* <div>
         <button onClick={() => setCount((prev) => prev + 1)}>+</button>
         <p>{count}</p>
@@ -74,10 +89,29 @@ function App() {
       {/* <div>
         <ReducerApp />
       </div> */}
-      <div>
+      {/* <div>
         <h1>{username}</h1>
-        <button onClick={() => setUsername("Aman")}>Change Name</button>
+        <button onClick={() => setUsername("Vansh")}>Change Name</button>
       </div>
+      <div>
+        <input type="text" name="name" id="name" />
+        <button onClick={handleSubmit}>Submit</button>
+      </div> */}
+
+      {/* <Child1 count={count} setCount={setCount} />
+      <Child2 count={count} /> */}
+
+      {/* <button onClick={() => setShow((prev) => !prev)}>Show</button>
+      <div>
+        {show && (
+          <Suspense fallback={<h1>Loading....</h1>}>
+            <Profile />
+          </Suspense>
+        )}
+      </div> */}
+      <ErrorBoundary>
+        <Profile />
+      </ErrorBoundary>
     </div>
   );
 }
