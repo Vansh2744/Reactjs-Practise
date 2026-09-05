@@ -14,6 +14,11 @@ import { useUsername } from "./components/CustomHook";
 import Child1 from "./components/Child1";
 import Child2 from "./components/Child2";
 import ErrorBoundary from "./components/ErrorBoundary";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Home from "./components/Home";
+import Dashboard from "./components/Dashboard";
+import Login from "./components/Login";
 // import Profile from "./components/Profile";
 
 const Profile = lazy(() => import("./components/Profile"));
@@ -38,14 +43,14 @@ function App() {
 
   // const calculateFact = useCallback(() => {}, []);
 
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
 
-  const [username, setUsername] = useUsername("Vansh");
+  // const [username, setUsername] = useUsername("Vansh");
 
-  const handleSubmit = () => {
-    const name = document.getElementById("name");
-    console.log(name?.value);
-  };
+  // const handleSubmit = () => {
+  //   const name = document.getElementById("name");
+  //   console.log(name?.value);
+  // };
 
   return (
     <div>
@@ -109,9 +114,23 @@ function App() {
           </Suspense>
         )}
       </div> */}
-      <ErrorBoundary>
+      {/* <ErrorBoundary fallback={"Profile not fetched"}>
         <Profile />
       </ErrorBoundary>
+      <ErrorBoundary fallback={"Profile not fetched"}>
+        <Child1 count={count} setCount={setCount} />
+        <Child2 count={count} />
+      </ErrorBoundary> */}
+
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
